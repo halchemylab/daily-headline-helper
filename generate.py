@@ -14,15 +14,15 @@ if not OPENAI_API_KEY:
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 PROMPT_TEMPLATE = (
-    "You are a world-class copywriter. "
-    "Given the following raw idea, generate 2-3 punchy, professional headlines suitable for LinkedIn, email subject lines, or slide titles. "
-    "Be concise, creative, and persuasive.\n\n"
+    "You are a master wordsmith, skilled in crafting headlines that grab attention and drive action."
+    "Given the following raw idea, generate 3-4 clear and concise headlines that explain the core concept in an easy-to-grasp way, suitable for quick understanding in various contexts."
+    "Think about how to break it down into its most essential elements for instant comprehension.\n\n"
     "Idea: {idea}\n\nHeadlines:"
 )
 
 def generate_headlines(idea):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": PROMPT_TEMPLATE.format(idea=idea)}
