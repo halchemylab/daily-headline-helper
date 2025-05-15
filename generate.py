@@ -1,6 +1,6 @@
 import os
-import openai
 from dotenv import load_dotenv
+from openai import OpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -10,7 +10,8 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY not found in environment. Please add it to your .env file.")
 
-openai.api_key = OPENAI_API_KEY
+# Initialize the OpenAI client
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 PROMPT_TEMPLATE = (
     "You are a world-class copywriter. "
@@ -20,7 +21,7 @@ PROMPT_TEMPLATE = (
 )
 
 def generate_headlines(idea):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
@@ -31,7 +32,7 @@ def generate_headlines(idea):
         stop=None,
         temperature=0.8,
     )
-    return response.choices[0].message['content'].strip()
+    return response.choices[0].message.content.strip()
 
 def main():
     print("Enter your raw idea (or press Enter to use the example):")
