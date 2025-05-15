@@ -38,7 +38,7 @@ def main():
     print("Enter your raw idea (or press Enter to use the example):")
     idea = input().strip()
     if not idea:
-        idea = "AI tool that helps marketers rewrite job posts for different candidate personas"
+        idea = "New study reveals surprising link between coffee consumption and productivity."
     print("\nGenerating headlines...\n")
     headlines = generate_headlines(idea)
     print(headlines)
