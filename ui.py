@@ -1,36 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
-import openai
-import os
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from generate import generate_headlines
 
-PROMPT_TEMPLATE = (
-    "You are a world-class copywriter. "
-    "Given the following raw idea, generate 2-3 punchy, professional headlines suitable for LinkedIn, email subject lines, or slide titles. "
-    "Be concise, creative, and persuasive.\n\n"
-    "Idea: {idea}\n\nHeadlines:"
-)
 
-def generate_headlines(idea):
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": PROMPT_TEMPLATE.format(idea=idea)}
-            ],
-            max_tokens=150,
-            n=1,
-            stop=None,
-            temperature=0.8,
-        )
-        return response.choices[0].message['content'].strip()
-    except Exception as e:
-        return f"Error: {e}"
 
 def on_generate():
     idea = idea_entry.get("1.0", tk.END).strip()
