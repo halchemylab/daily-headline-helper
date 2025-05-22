@@ -1,6 +1,6 @@
 # Headline Generator 🧠✍️
 
-This is a simple, atomic tool that takes your raw ideas and turns them into punchy, polished headlines using OpenAI's GPT API.
+This is a simple, atomic tool that takes your raw ideas and turns them into punchy, polished headlines or social media posts using OpenAI's GPT API.
 
 Designed for:
 - Consultants and strategists crafting LinkedIn or slide content
@@ -25,20 +25,29 @@ Designed for:
    cd headline-generator
    ```
 2. Add your OpenAI API key to a .env file:
-
    ```bash
    OPENAI_API_KEY=your_api_key_here
    ```
 3. Install dependencies:
-
    ```bash
-   pip install openai python-dotenv
+   pip install -r requirements.txt
    ```
-4. Run the script:
 
-   ```bash
-   python generate.py
-   ```
+### Run in the Terminal (CLI)
+
+Use the command-line tool to generate headlines or posts:
+```bash
+python generate.py
+```
+You will be prompted to enter your idea and (optionally) a platform.
+
+### Run the Graphical UI
+
+Use the Tkinter-based UI for a simple graphical experience:
+```bash
+python ui.py
+```
+Enter your idea, select a platform, and click "Generate Headlines" to see results.
 
 📦 Output
-You’ll get 2–3 clear, professional headlines that are ready for LinkedIn, email subject lines, or slide titles.
+You’ll get a catchy headline, a short post, and relevant hashtags—ready for LinkedIn, Facebook, Instagram, or X (Twitter)!
