@@ -49,5 +49,11 @@ python ui.py
 ```
 Enter your idea, select a platform, and click "Generate Headlines" to see results.
 
+## 💾 Output Saving
+
+Every time you generate a headline/post (using either the CLI or the UI), the result is automatically saved to `output.csv` in your project folder. This CSV file includes columns for your input idea, selected platform, generated headline, post, and hashtags. Each new generation appends a new row to the file.
+
+> **Note:** `output.csv` is included in `.gitignore` and will not be tracked by git.
+
 📦 Output
 You’ll get a catchy headline, a short post, and relevant hashtags—ready for LinkedIn, Facebook, Instagram, or X (Twitter)!
