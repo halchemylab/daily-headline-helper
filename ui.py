@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from tkinter import ttk
 
-from generate import generate_headlines
+from generate import generate_headlines, parse_output, save_to_csv
 
 def center_window(win, width, height):
     win.update_idletasks()
@@ -29,6 +29,9 @@ def on_generate():
     output_text.delete("1.0", tk.END)
     output_text.insert(tk.END, headlines)
     output_text.config(state="disabled")
+    # Save to CSV
+    headline, post, hashtags = parse_output(headlines)
+    save_to_csv(idea, platform, headline, post, hashtags)
 
 root = tk.Tk()
 root.title("Headline Generator 🧠✍️")

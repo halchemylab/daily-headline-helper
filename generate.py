@@ -1,4 +1,5 @@
 import os
+import csv
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -41,14 +42,39 @@ def generate_headlines(idea, platform="Linkedin"):
     )
     return response.choices[0].message.content.strip()
 
+def parse_output(output):
+    """Parse the generated output into headline, post, and hashtags."""
+    headline, post, hashtags = '', '', ''
+    for line in output.splitlines():
+        if line.startswith('Headline:'):
+            headline = line.replace('Headline:', '').strip()
+        elif line.startswith('Post:'):
+            post = line.replace('Post:', '').strip()
+        elif line.startswith('Hashtags:'):
+            hashtags = line.replace('Hashtags:', '').strip()
+    return headline, post, hashtags
+
+def save_to_csv(idea, platform, headline, post, hashtags, filename="output.csv"):
+    """Append a new row to the CSV file, creating it with headers if needed."""
+    file_exists = os.path.isfile(filename)
+    with open(filename, mode='a', encoding='utf-8', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        if not file_exists:
+            writer.writerow(["Idea", "Platform", "Headline", "Post", "Hashtags"])
+        writer.writerow([idea, platform, headline, post, hashtags])
+
 def main():
     print("Enter your raw idea (or press Enter to use the example):")
     idea = input().strip()
     if not idea:
         idea = "New study reveals surprising link between coffee consumption and productivity."
+    platform = "Linkedin"  # You can extend this to prompt for platform if needed
     print("\nGenerating headlines...\n")
-    headlines = generate_headlines(idea)
+    headlines = generate_headlines(idea, platform)
     print(headlines)
+    headline, post, hashtags = parse_output(headlines)
+    save_to_csv(idea, platform, headline, post, hashtags)
+    print("\nSaved to output.csv.")
 
 if __name__ == "__main__":
     main()
