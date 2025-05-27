@@ -17,6 +17,20 @@ Designed for:
 - "Speak Their Language: Personalized Hiring Copy in Seconds"
 - "No More Guessing: Let AI Tailor Your Job Listings by Persona"
 
+## ✨ Features
+
+- Generates catchy headlines and posts for multiple platforms
+- Adds relevant hashtags and emojis automatically
+- Simple CLI and graphical UI (Tkinter)
+- Saves all generations to a CSV file for easy tracking
+- Customizable for different platforms
+
+## 💡 Tips
+
+- Try different platforms for varied tone and style.
+- Edit the prompt in `generate.py` to fine-tune the output style.
+- Use the CSV output to track your best ideas.
+
 ## 🛠️ How to Run
 
 1. Clone the repo  
@@ -48,6 +62,12 @@ Use the Tkinter-based UI for a simple graphical experience:
 python ui.py
 ```
 Enter your idea, select a platform, and click "Generate Headlines" to see results.
+
+## 🧩 Troubleshooting
+
+- **API Key Issues:** Make sure your `.env` file is in the project root and contains `OPENAI_API_KEY=...`.
+- **No Output:** Check your internet connection and OpenAI API usage limits.
+- **UI Not Launching:** Ensure you have `tkinter` installed (`pip install tk` on some systems).
 
 ## 💾 Output Saving
 
